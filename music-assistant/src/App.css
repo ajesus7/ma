@@ -43,7 +43,7 @@
 
 /* Staff Styling */
 
-.staff {
+#staff {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -66,4 +66,34 @@ svg.icon {
   position: relative;
   top: -10.5em;
   right: 21em;
+}
+
+.note {
+  position: absolute;
+  bottom: -1em;
+  left: -0.2em;
+}
+
+/* note oval */
+.note p {
+  width: 2.15em;
+  height: 1.7em;
+  position: relative;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+  transform: rotate(-20deg); /* Rotate the note head slightly */
+  margin: 0;
+}
+
+/* creates the note stem */
+.note p::after {
+  content: ""; /* note doesn't appear without this */
+  position: absolute;
+  width: 0.25em;
+  height: 4em;
+  background-color: blue;
+  left: 2.5em;
+  bottom: 0.45em;
+  transform: rotate(20deg); /* Rotate the note head slightly */
 }
