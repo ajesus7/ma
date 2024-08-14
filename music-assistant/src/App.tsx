@@ -51,16 +51,35 @@ function App() {
     return notes;
   };
 
+  const lightsOn = () => {
+    const elements = document.querySelectorAll(".invisible, .visible");
+
+    elements.forEach((element) => {
+      if (element.classList.contains("invisible")) {
+        element.classList.remove("invisible");
+        element.classList.add("visible");
+      } else {
+        element.classList.add("invisible");
+      }
+    });
+  };
+
   const generateDots = () => {
     const dots = [];
-    let className = "horizontal-line";
+    let horizontalLineClassName = "horizontal-line invisible ";
+    let dotVisibility = "dot invisible ";
+    let verticalLineClassName = "vertical-line invisible ";
+
     for (let y = 0; y < 10; y++) {
       console.log("y");
       if (y === 2) {
-        className = "horizontal-line white-line";
+        horizontalLineClassName = "horizontal-line";
+        dotVisibility = "dot";
       }
       if (y > 6) {
-        className = "horizontal-line";
+        horizontalLineClassName = "horizontal-line invisible";
+        dotVisibility = "dot invisible";
+        verticalLineClassName = "vertical-line invisible ";
       }
       for (let x = 0; x < 10; x++) {
         dots.push(
@@ -69,9 +88,9 @@ function App() {
             className="square"
             onClick={() => playTone(x + y, "4n")}
           >
-            <div className="dot"></div>
-            <div className={className}></div>
-            <div className="vertical-line"></div>
+            <div className={dotVisibility}></div>
+            <div className={horizontalLineClassName}></div>
+            <div className={verticalLineClassName}></div>
           </div>
         );
       }
@@ -87,6 +106,7 @@ function App() {
         <div className="staff-hide-overflow">
           <div className="staff-container">{generateDots()}</div>
         </div>
+        <button onClick={lightsOn}></button>
       </div>
     </>
   );

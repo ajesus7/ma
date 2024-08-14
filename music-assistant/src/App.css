@@ -54,7 +54,7 @@ body {
 
 .dot {
   position: relative;
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(108, 102, 25);
   color: black;
   border-radius: 50%;
   height: 1em;
@@ -75,7 +75,7 @@ body {
   position: absolute;
   height: 0.1em; /* Line thickness */
   width: 5em;
-  background-color: rgb(53, 53, 53);
+  background-color: rgb(176, 174, 174);
 }
 
 /* Vertical line styling */
@@ -91,5 +91,9 @@ body {
 }
 
 .white-line {
-  background-color: blue;
+  background-color: white;
+}
+
+.invisible {
+  display: none;
 }
