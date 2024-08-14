@@ -51,6 +51,7 @@ function App() {
     return notes;
   };
 
+  // * Adds removes
   const lightsOn = () => {
     const elements = document.querySelectorAll(".invisible, .visible");
 
@@ -60,6 +61,7 @@ function App() {
         element.classList.add("visible");
       } else {
         element.classList.add("invisible");
+        element.classList.remove("visible");
       }
     });
   };
