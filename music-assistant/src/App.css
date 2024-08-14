@@ -1,99 +1,80 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #212121;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* Staff Styling */
-
-#staff {
-  position: relative;
+.main {
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  padding: 0;
+  position: relative;
+  height: 50em;
+  width: 50em;
+  border: 2px solid white;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.staff-container {
+  position: absolute;
+  border: 2px solid rgb(69, 182, 69);
+  display: grid;
+  padding: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.square {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  /* background: grey;
+  border: 2px solid lightgray; */
   height: 10em;
 }
 
-.line {
-  list-style-type: none;
-  width: 50em;
-  height: 2.5em;
-  color: red;
-  border-bottom: 5px solid lightblue;
-}
-
-svg.icon {
-  fill: white;
-  height: 12em;
+.dot {
   position: relative;
-  top: -10.5em;
-  right: 21em;
-}
-
-.note {
-  position: absolute;
-  bottom: -1em;
-  left: -0.2em;
-}
-
-/* note oval */
-.note p {
-  width: 2.15em;
-  height: 1.7em;
-  position: relative;
-  background-color: blue;
+  background-color: rgb(233, 233, 233);
+  color: black;
   border-radius: 50%;
-  display: inline-block;
-  transform: rotate(-20deg); /* Rotate the note head slightly */
-  margin: 0;
+  height: 2em;
+  width: 2em;
+  cursor: pointer;
+  z-index: 5;
 }
 
-/* creates the note stem */
-.note p::after {
-  content: ""; /* note doesn't appear without this */
+.dot p {
   position: absolute;
-  width: 0.25em;
-  height: 4em;
-  background-color: blue;
-  left: 2.5em;
-  bottom: 0.45em;
-  transform: rotate(20deg); /* Rotate the note head slightly */
+  top: 1em;
+  left: 0.2em;
+  color: rgb(233, 233, 233);
+}
+
+/* Horizontal line styling */
+.horizontal-line {
+  position: absolute;
+  height: 0.1em; /* Line thickness */
+  width: 200em;
+  background-color: rgb(105, 105, 105);
+  top: 50%; /* Center the line vertically in the square */
+  left: -100em; /* Move the line to the left so it expands equally */
+}
+
+/* Vertical line styling */
+.vertical-line {
+  position: absolute;
+  height: 200em; /* Line thickness */
+  width: 0.1em;
+  background-color: rgb(105, 105, 105);
+}
+
+.dot:hover {
+  background-color: red;
 }
