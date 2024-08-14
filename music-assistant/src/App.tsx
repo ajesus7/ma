@@ -53,17 +53,15 @@ function App() {
 
   const generateDots = () => {
     const dots = [];
-    for (let y = 0; y < 2; y++) {
-      for (let x = 0; x < 2; x++) {
+    for (let y = 0; y < 10; y++) {
+      for (let x = 0; x < 10; x++) {
         dots.push(
           <div
             key={`${x}-${y}`}
             className="square"
             onClick={() => playTone(x + y, "4n")}
           >
-            <div className="dot">
-              <p>{`${x}-${y}`}</p>
-            </div>
+            <div className="dot"></div>
             <div className="horizontal-line"></div>
             <div className="vertical-line"></div>
           </div>
@@ -78,7 +76,9 @@ function App() {
   return (
     <>
       <div className="main">
-        <div className="staff-container">{generateDots()}</div>
+        <div className="staff-hide-overflow">
+          <div className="staff-container">{generateDots()}</div>
+        </div>
       </div>
     </>
   );
