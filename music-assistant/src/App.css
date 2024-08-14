@@ -74,20 +74,22 @@ body {
 .horizontal-line {
   position: absolute;
   height: 0.1em; /* Line thickness */
-  width: 200em;
-  background-color: rgb(105, 105, 105);
-  top: 50%; /* Center the line vertically in the square */
-  left: -100em; /* Move the line to the left so it expands equally */
+  width: 5em;
+  background-color: rgb(53, 53, 53);
 }
 
 /* Vertical line styling */
 .vertical-line {
   position: absolute;
-  height: 200em; /* Line thickness */
+  height: 5em; /* Line thickness */
   width: 0.1em;
-  background-color: rgb(105, 105, 105);
+  background-color: rgb(53, 53, 53);
 }
 
 .dot:hover {
   background-color: red;
+}
+
+.white-line {
+  background-color: blue;
 }

@@ -53,7 +53,15 @@ function App() {
 
   const generateDots = () => {
     const dots = [];
+    let className = "horizontal-line";
     for (let y = 0; y < 10; y++) {
+      console.log("y");
+      if (y === 2) {
+        className = "horizontal-line white-line";
+      }
+      if (y > 6) {
+        className = "horizontal-line";
+      }
       for (let x = 0; x < 10; x++) {
         dots.push(
           <div
@@ -62,7 +70,7 @@ function App() {
             onClick={() => playTone(x + y, "4n")}
           >
             <div className="dot"></div>
-            <div className="horizontal-line"></div>
+            <div className={className}></div>
             <div className="vertical-line"></div>
           </div>
         );
