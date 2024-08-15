@@ -1,7 +1,38 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import * as Tone from "tone";
 
+/**
+   * 
+   * The generateStaffList function creates a 2-dimensional array structure.
+   * This array consists of 13 rows, and each row contains 13 elements.
+   * Each element within a row is an array holding the string "0".
+   * This function is useful when you need to initialize a grid-like data structure with a predefined value.
+
+   */
+const generateStaffList = (): Array<Array<Array<string>>> => {
+  let list = new Array<Array<Array<string>>>();
+
+  for (let y = 0; y < 13; y++) {
+    let row = new Array<Array<string>>();
+    for (let x = 0; x < 13; x++) {
+      row.push(["0", "4n", "holder"]);
+    }
+    list.push(row);
+  }
+
+  return list;
+};
+
 function App() {
+  const [staffList, setStaffList] = useState(generateStaffList);
+
+  // Initialize the staffList state when the component mounts
+  useEffect(() => {
+    const initialStaffList = generateStaffList();
+    setStaffList(initialStaffList);
+  }, []);
+
   const playTone = (note: number, interval: string) => {
     console.log("tone played: ", note, " : ", convertNumToPitchLetter(note));
     const synth = new Tone.Synth().toDestination();
@@ -98,8 +129,6 @@ function App() {
     // let verticalLineClassName = "vertical-line invisible ";
 
     for (let y = 0; y < 13; y++) {
-      console.log("y");
-
       for (let x = 0; x < 13; x++) {
         // render the main 5 lines
         if (y % 2 == 0 && y > 1 && y < 11) {
@@ -119,13 +148,28 @@ function App() {
           dotVisibility = "dot invisible secondary-dot";
         }
 
+        // const currentPosition = determinePosition(x, y);
+
         dots.push(
           <div key={`${x}-${y}`} className="square">
-            <div
-              className={dotVisibility}
-              onClick={() => playTone(y, "4n")}
-            ></div>
+            {/* First conditional block for the "note" */}
+            {staffList[y][x][2] === "note" && (
+              <div
+                className="note"
+                onClick={() =>
+                  playTone(parseInt(staffList[y][x][0]), staffList[y][x][1])
+                }
+              ></div>
+            )}
+            {/* Horizontal line */}
             <div className={horizontalLineClassName}></div>
+            {/* Second conditional block for the "holder" */}
+            {staffList[y][x][2] === "holder" && (
+              <div
+                className={dotVisibility}
+                onClick={() => playTone(y, staffList[y][x][1])}
+              ></div>
+            )}
             {/* <div className={verticalLineClassName}></div> */}
           </div>
         );
@@ -133,6 +177,11 @@ function App() {
     }
     return dots;
   };
+
+  // const determinePosition = (x: number, y: number): Array<string> => {
+  //   const note = y.toString;
+  //   return [note, "4n", "note"];
+  // };
 
   generateNotes();
 
