@@ -26,6 +26,7 @@ const generateStaffList = (): Array<Array<Array<string>>> => {
 
 function App() {
   const [staffList, setStaffList] = useState(generateStaffList);
+  const [notesList, setNotesList] = useState([]);
 
   // Initialize the staffList state when the component mounts
   useEffect(() => {
@@ -148,8 +149,6 @@ function App() {
           dotVisibility = "dot invisible secondary-dot";
         }
 
-        // const currentPosition = determinePosition(x, y);
-
         dots.push(
           <div key={`${x}-${y}`} className="square">
             {/* First conditional block for the "note" */}
@@ -159,7 +158,9 @@ function App() {
                 onClick={() =>
                   playTone(parseInt(staffList[y][x][0]), staffList[y][x][1])
                 }
-              ></div>
+              >
+                <p></p>
+              </div>
             )}
             {/* Horizontal line */}
             <div className={horizontalLineClassName}></div>
@@ -167,7 +168,7 @@ function App() {
             {staffList[y][x][2] === "holder" && (
               <div
                 className={dotVisibility}
-                onClick={() => playTone(y, staffList[y][x][1])}
+                onClick={() => addNote(x, y)}
               ></div>
             )}
             {/* <div className={verticalLineClassName}></div> */}
@@ -178,10 +179,20 @@ function App() {
     return dots;
   };
 
-  // const determinePosition = (x: number, y: number): Array<string> => {
-  //   const note = y.toString;
-  //   return [note, "4n", "note"];
-  // };
+  const addNote = (x: number, y: number) => {
+    // Create a deep copy of the staffList to avoid direct state mutation
+    const updatedStaffList = [...staffList];
+
+    // Update the specific position in the copied staffList
+    updatedStaffList[y][x][2] = "note";
+    updatedStaffList[y][x][0] = y.toString();
+
+    // Set the updated staffList state
+    setStaffList(updatedStaffList);
+
+    // Append the new note position to the notesList
+    setNotesList((prevNotesList) => [...prevNotesList, [y, x]]);
+  };
 
   generateNotes();
 

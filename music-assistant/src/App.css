@@ -131,3 +131,32 @@ body {
   top: 24.5em;
   z-index: 10;
 }
+
+.note {
+  position: absolute;
+  z-index: 10;
+}
+
+/* note oval */
+.note p {
+  width: 1.35em;
+  height: 0.8em;
+  position: relative;
+  background-color: rgb(73, 91, 119);
+  border-radius: 50%;
+  display: inline-block;
+  transform: rotate(-20deg); /* Rotate the note head slightly */
+  margin: 0;
+}
+
+/* creates the note stem */
+.note p::after {
+  content: ""; /* note doesn't appear without this */
+  position: absolute;
+  width: 0.2em;
+  height: 2em;
+  background-color: rgb(73, 91, 119);
+  left: 1.4em;
+  bottom: 0.2em;
+  transform: rotate(20deg); /* Rotate the note head slightly */
+}
