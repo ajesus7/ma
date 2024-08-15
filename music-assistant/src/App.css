@@ -129,4 +129,5 @@ body {
   width: 3.3em;
   left: 10em;
   top: 24.5em;
+  z-index: 10;
 }

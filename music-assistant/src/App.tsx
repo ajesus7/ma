@@ -8,27 +8,29 @@ function App() {
     synth.triggerAttackRelease(convertNumToPitchLetter(note), interval);
   };
 
-  const convertNumToPitchLetter = (num: number): string => {
-    const octave = Math.floor(num / 7);
-    const noteLetters = ["C", "D", "E", "F", "G", "A", "B"];
-    const noteLetter = num % 7;
+  const convertNumToPitchLetter = (y: number): string => {
+    const yPosToNote = [
+      "F5",
+      "E5",
+      "D5",
+      "C5",
+      "B4",
+      "A4",
+      "G4",
+      "F4",
+      "E4",
+      "D4",
+      "C4",
+      "B3",
+      "A3",
+    ];
 
     // Map the noteLetter to the corresponding note name
-    const noteName = noteLetters[noteLetter];
+    const noteName = yPosToNote[y];
 
     // Concatenate the note name with the octave number
-    const fullNoteName = `${noteName}${octave}`;
+    const fullNoteName = `${noteName}`;
 
-    console.log(
-      "num ",
-      num,
-      " octave ",
-      octave,
-      " noteLetter ",
-      noteLetter,
-      " ",
-      fullNoteName
-    );
     return fullNoteName;
   };
 
@@ -114,7 +116,7 @@ function App() {
           <div key={`${x}-${y}`} className="square">
             <div
               className={dotVisibility}
-              onClick={() => playTone(x + y, "4n")}
+              onClick={() => playTone(y, "4n")}
             ></div>
             <div className={horizontalLineClassName}></div>
             {/* <div className={verticalLineClassName}></div> */}
