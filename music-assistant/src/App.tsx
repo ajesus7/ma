@@ -100,18 +100,25 @@ function App() {
     for (let y = 0; y < 13; y++) {
       console.log("y");
 
-      // main 5 lines
-      if (y % 2 == 0 && y > 1 && y < 11) {
-        console.log("y div by 2 ", y);
-        horizontalLineClassName = "horizontal-line";
-        dotVisibility = "dot";
-      } else {
-        // half notes and one ledger line above and below staff
-        horizontalLineClassName = "horizontal-line invisible secondary-line";
-        dotVisibility = "dot invisible secondary-dot";
-      }
-
       for (let x = 0; x < 13; x++) {
+        // render the main 5 lines
+        if (y % 2 == 0 && y > 1 && y < 11) {
+          console.log("y div by 2 ", y);
+          horizontalLineClassName = "horizontal-line";
+          dotVisibility = "dot";
+
+          // hide the 2 left-most columns of note positions
+          if (x < 2) {
+            dotVisibility = "dot invisible";
+          }
+        }
+
+        // half notes and one ledger line above and below staff
+        if (!(y % 2 == 0 && y > 1 && y < 11)) {
+          horizontalLineClassName = "horizontal-line invisible secondary-line";
+          dotVisibility = "dot invisible secondary-dot";
+        }
+
         dots.push(
           <div key={`${x}-${y}`} className="square">
             <div
