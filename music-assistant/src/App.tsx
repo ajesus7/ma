@@ -93,7 +93,7 @@ function App() {
     const dots = [];
     let horizontalLineClassName = "horizontal-line invisible ";
     let dotVisibility = "dot invisible ";
-    let verticalLineClassName = "vertical-line invisible ";
+    // let verticalLineClassName = "vertical-line invisible ";
 
     for (let y = 0; y < 13; y++) {
       console.log("y");
@@ -117,7 +117,7 @@ function App() {
               onClick={() => playTone(x + y, "4n")}
             ></div>
             <div className={horizontalLineClassName}></div>
-            <div className={verticalLineClassName}></div>
+            {/* <div className={verticalLineClassName}></div> */}
           </div>
         );
       }
@@ -133,8 +133,13 @@ function App() {
         <div className="staff-hide-overflow">
           <div className="staff-container">{generateDots()}</div>
         </div>
-        <button onClick={lightsOn}></button>
-        <button onClick={hideNotes}></button>
+        <div className="row">
+          <button onClick={lightsOn}>Show All Lines</button>
+          <button onClick={hideNotes}>Hide Notes</button>
+        </div>
+        <svg viewBox="0 0 44.19 125" className="icon">
+          <use href="/user-icons.svg#icon-treble-clef" />
+        </svg>
       </div>
     </>
   );

@@ -27,14 +27,13 @@ body {
   width: 45em;
   height: 45em;
   border: 2px solid black;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .staff-container {
   position: absolute;
   display: grid;
   grid-template-columns: repeat(13, 1fr);
-  border: 2px solid green;
   grid-template-rows: repeat(13, 1fr);
   width: 45em;
   padding-left: 2.5em; /* center staff within staff container, otherwise first dots are generated at the left side */
@@ -74,7 +73,7 @@ body {
 /* Horizontal line styling */
 .horizontal-line {
   position: absolute;
-  height: 0.3em; /* Line thickness */
+  height: 0.1em; /* Line thickness */
   width: 5em;
   background-color: rgb(190, 190, 190);
 }
@@ -105,7 +104,7 @@ body {
 
 .secondary-line {
   background-color: rgb(56, 55, 55);
-  height: 0.1em;
+  height: 0.05em;
 }
 
 .secondary-dot {
@@ -116,4 +115,18 @@ body {
 
 .dot-invisible {
   display: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.icon {
+  position: absolute;
+  fill: rgb(190, 190, 190);
+  width: 3.3em;
+  left: 10em;
+  top: 24.5em;
 }
