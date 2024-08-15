@@ -13,7 +13,6 @@ body {
   position: relative;
   height: 50em;
   width: 50em;
-  border: 2px solid white;
   justify-content: center;
   align-items: center;
   padding: 5em;
@@ -28,15 +27,17 @@ body {
   width: 45em;
   height: 45em;
   border: 2px solid black;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .staff-container {
   position: absolute;
-  border: 2px solid rgb(69, 182, 69);
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(13, 1fr);
+  border: 2px solid green;
+  grid-template-rows: repeat(13, 1fr);
+  width: 45em;
+  padding-left: 2.5em; /* center staff within staff container, otherwise first dots are generated at the left side */
   overflow: hidden;
 }
 
@@ -45,20 +46,20 @@ body {
   position: relative;
   justify-content: center;
   align-items: center;
-  width: 5em;
+  width: 0.75em;
   /* background: grey;
   border: 2px solid lightgray; */
-  height: 5em;
+  height: 0.75em;
   box-sizing: border-box; /* Ensure the total size includes the border */
 }
 
 .dot {
   position: relative;
-  background-color: rgb(108, 102, 25);
+  background-color: rgb(73, 91, 119);
   color: black;
   border-radius: 50%;
-  height: 1em;
-  width: 1em;
+  height: 0.6em;
+  width: 0.6em;
   cursor: pointer;
   z-index: 5;
 }
@@ -73,9 +74,13 @@ body {
 /* Horizontal line styling */
 .horizontal-line {
   position: absolute;
-  height: 0.1em; /* Line thickness */
+  height: 0.3em; /* Line thickness */
   width: 5em;
-  background-color: rgb(176, 174, 174);
+  background-color: rgb(190, 190, 190);
+}
+
+.gray {
+  background-color: rgb(111, 110, 110);
 }
 
 /* Vertical line styling */
@@ -95,5 +100,20 @@ body {
 }
 
 .invisible {
+  display: none;
+}
+
+.secondary-line {
+  background-color: rgb(56, 55, 55);
+  height: 0.1em;
+}
+
+.secondary-dot {
+  background-color: rgb(43, 53, 70);
+  width: 0.4em;
+  height: 0.4em;
+}
+
+.dot-invisible {
   display: none;
 }

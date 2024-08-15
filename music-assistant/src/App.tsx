@@ -51,7 +51,16 @@ function App() {
     return notes;
   };
 
-  // * Adds removes
+  /**
+   * 1. first grabs all elements that have .invisible or .visible
+   *      so, on first toggle, will only have a list of invisible elements.
+   *      on second toggle, will only have a list of visible elements.
+   *
+   * 2. toggles visibility:
+   *     .invisible -> .visible (makes element appear);
+   *     .visible -> .invisible (makes element disappear)
+   */
+  // *
   const lightsOn = () => {
     const elements = document.querySelectorAll(".invisible, .visible");
 
@@ -66,31 +75,47 @@ function App() {
     });
   };
 
+  const hideNotes = () => {
+    const elements = document.querySelectorAll(".dot, .dot-invisible");
+
+    elements.forEach((element) => {
+      if (element.classList.contains("dot-invisible")) {
+        element.classList.remove("dot-invisible");
+        element.classList.add("dot");
+      } else {
+        element.classList.add("dot-invisible");
+        element.classList.remove("dot");
+      }
+    });
+  };
+
   const generateDots = () => {
     const dots = [];
     let horizontalLineClassName = "horizontal-line invisible ";
     let dotVisibility = "dot invisible ";
     let verticalLineClassName = "vertical-line invisible ";
 
-    for (let y = 0; y < 10; y++) {
+    for (let y = 0; y < 13; y++) {
       console.log("y");
-      if (y === 2) {
+
+      // main 5 lines
+      if (y % 2 == 0 && y > 1 && y < 11) {
+        console.log("y div by 2 ", y);
         horizontalLineClassName = "horizontal-line";
         dotVisibility = "dot";
+      } else {
+        // half notes and one ledger line above and below staff
+        horizontalLineClassName = "horizontal-line invisible secondary-line";
+        dotVisibility = "dot invisible secondary-dot";
       }
-      if (y > 6) {
-        horizontalLineClassName = "horizontal-line invisible";
-        dotVisibility = "dot invisible";
-        verticalLineClassName = "vertical-line invisible ";
-      }
-      for (let x = 0; x < 10; x++) {
+
+      for (let x = 0; x < 13; x++) {
         dots.push(
-          <div
-            key={`${x}-${y}`}
-            className="square"
-            onClick={() => playTone(x + y, "4n")}
-          >
-            <div className={dotVisibility}></div>
+          <div key={`${x}-${y}`} className="square">
+            <div
+              className={dotVisibility}
+              onClick={() => playTone(x + y, "4n")}
+            ></div>
             <div className={horizontalLineClassName}></div>
             <div className={verticalLineClassName}></div>
           </div>
@@ -109,6 +134,7 @@ function App() {
           <div className="staff-container">{generateDots()}</div>
         </div>
         <button onClick={lightsOn}></button>
+        <button onClick={hideNotes}></button>
       </div>
     </>
   );
